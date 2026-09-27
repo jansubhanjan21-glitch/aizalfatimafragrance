@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aizal Fatima Fragrance - Luxury Perfumes</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#D4AF37',
+                        'gold-light': '#F3E5AB',
+                        'gold-dark': '#AA7C11',
+                        charcoal: '#121212',
+                        'charcoal-light': '#1E1E1E',
+                        'charcoal-card': '#1A1A1A'
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #121212;
+            color: #E5E7EB;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 50%, #AA7C11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border {
+            border-color: #D4AF37;
+        }
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.2);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121212;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-charcoal text-gray-100 min-h-screen flex flex-col selection:bg-gold selection:text-black">
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 bg-charcoal/95 backdrop-blur-md border-b border-gold/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo & Name -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-full border-2 border-gold flex items-center justify-center bg-charcoal-light group-hover:scale-105 transition duration-300 gold-glow">
+                    <i class="fa-solid fa-crown text-gold text-xl"></i>
+                </div>
+                <div>
+                    <span class="block text-xs uppercase tracking-widest text-gold font-semibold">Aizal Fatima</span>
+                    <span class="text-xl sm:text-2xl font-serif font-bold gold-gradient-text">FRAGRANCE</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-wide">
+                <a href="#hero" class="hover:text-gold transition duration-200">Home</a>
+                <a href="#catalog" class="hover:text-gold transition duration-200">Collection</a>
+                <a href="#loyalty" class="hover:text-gold transition duration-200 flex items-center gap-1.5"><i class="fa-solid fa-star text-gold"></i> Loyalty Card</a>
+                <a href="#contact" class="hover:text-gold transition duration-200">Contact Us</a>
+            </nav>
+
+            <!-- Actions (Cart & Admin Login) -->
+            <div class="flex items-center space-x-4">
+                <!-- Cart Button -->
+                <button onclick="toggleCartModal()" class="relative p-2.5 rounded-full bg-charcoal-light border border-gold/30 hover:border-gold text-gold transition duration-200">
+                    <i class="fa-solid fa-bag-shopping text-lg"></i>
+                    <span id="cart-badge" class="absolute -top-1 -right-1 bg-gold text-black text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center hidden">0</span>
+                </button>
+
+                <!-- Admin Button -->
+                <button onclick="openAdminLogin()" class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-gradient-to-r from-gold-dark to-gold text-black font-semibold text-xs tracking-wider uppercase hover:opacity-95 transition duration-200">
+                    <i class="fa-solid fa-lock text-xs"></i> Admin
+                </button>
+
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-lg bg-charcoal-light border border-gold/30 text-gold">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-charcoal-card border-b border-gold/20 px-6 py-4 space-y-3">
+            <a href="#hero" onclick="toggleMobileMenu()" class="block text-sm hover:text-gold">Home</a>
+            <a href="#catalog" onclick="toggleMobileMenu()" class="block text-sm hover:text-gold">Collection</a>
+            <a href="#loyalty" onclick="toggleMobileMenu()" class="block text-sm hover:text-gold">Loyalty Card</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="block text-sm hover:text-gold">Contact Us</a>
+            <div class="pt-2 border-t border-gray-800">
+                <button onclick="toggleMobileMenu(); openAdminLogin();" class="w-full py-2 text-center bg-gold text-black font-bold text-xs uppercase rounded">Admin Panel</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative bg-charcoal-light py-20 lg:py-32 overflow-hidden border-b border-gold/10">
+        <div class="absolute inset-0 opacity-15 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:24px_24px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6 text-center lg:text-left">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-semibold uppercase tracking-widest">
+                    <i class="fa-solid fa-crown"></i> Royal Signature Fragrances
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-serif font-bold tracking-tight leading-tight">
+                    Experience Pure <span class="gold-gradient-text">Luxury & Elegance</span>
+                </h1>
+                <p class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0">
+                    Discover our exclusive range of long-lasting, premium perfumes crafted to perfection for your unique presence. Crafted by Muhammad Subhan in Lyari, Karachi.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                    <a href="#catalog" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-gold-dark via-gold to-gold-light text-black font-bold text-sm uppercase tracking-wider hover:gold-glow transition duration-300 text-center">
+                        Shop Now Collection
+                    </a>
+                    <a href="#loyalty" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-charcoal border border-gold text-gold font-bold text-sm uppercase tracking-wider hover:bg-gold/10 transition duration-300 text-center">
+                        Digital Loyalty Card
+                    </a>
+                </div>
+            </div>
+            <div class="relative flex justify-center">
+                <div class="w-72 sm:w-96 h-96 sm:h-[450px] rounded-2xl bg-gradient-to-br from-charcoal-card to-charcoal border-2 border-gold/40 p-6 flex flex-col items-center justify-center relative gold-glow shadow-2xl">
+                    <div class="absolute -top-4 -right-4 bg-gold text-black text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow">
+                        Bestseller
+                    </div>
+                    <div class="w-32 h-48 sm:w-40 sm:h-60 rounded-xl bg-charcoal border border-gold/50 flex items-center justify-center mb-6 relative overflow-hidden group shadow-inner">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gold/20 to-transparent"></div>
+                        <i class="fa-solid fa-spray-can-sparkles text-gold text-6xl group-hover:scale-110 transition duration-500"></i>
+                    </div>
+                    <h3 class="font-serif text-xl sm:text-2xl font-bold text-gold">Vector IX</h3>
+                    <p class="text-xs text-gray-400 mt-1 uppercase tracking-widest">Exclusive Edition</p>
+                    <div class="mt-4 text-gold font-bold text-lg">Rs. 3,500</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Catalog Section -->
+    <section id="catalog" class="py-20 bg-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold">Our Exclusive <span class="gold-gradient-text">Fragrance Catalog</span></h2>
+                <p class="text-gray-400 text-sm sm:text-base">Explore our handcrafted selection of luxurious scents designed for men and women.</p>
+                
+                <!-- Category Filter Buttons -->
+                <div id="category-filters" class="flex flex-wrap justify-center gap-2 pt-4">
+                    <button onclick="filterProducts('All')" class="category-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold text-black transition duration-200">All</button>
+                    <button onclick="filterProducts('Men')" class="category-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-charcoal-light border border-gold/30 text-gray-300 hover:border-gold transition duration-200">Men</button>
+                    <button onclick="filterProducts('Women')" class="category-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-charcoal-light border border-gold/30 text-gray-300 hover:border-gold transition duration-200">Women</button>
+                    <button onclick="filterProducts('Unisex')" class="category-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-charcoal-light border border-gold/30 text-gray-300 hover:border-gold transition duration-200">Unisex</button>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Products injected dynamically via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Loyalty Card Section -->
+    <section id="loyalty" class="py-20 bg-charcoal-light border-y border-gold/20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 space-y-3">
+                <span class="text-gold text-xs font-bold uppercase tracking-widest bg-gold/10 px-3 py-1 rounded-full border border-gold/30">
+                    <i class="fa-solid fa-gift mr-1"></i> Reward Program
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold">Digital <span class="gold-gradient-text">Loyalty Card</span></h2>
+                <p class="text-gray-400 text-sm sm:text-base max-w-xl mx-auto">
+                    Har kharidari par 1 stamp hasil karein! Pure 10 stamps complete karne par paayein ek special perfume gift ya discount bilkul free.
+                </p>
+            </div>
+
+            <!-- Loyalty Lookup Box -->
+            <div class="bg-charcoal-card border-2 border-gold/40 rounded-2xl p-6 sm:p-8 gold-glow shadow-2xl">
+                <div class="max-w-md mx-auto space-y-4">
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gold">Enter Your Phone Number to Check Stamps</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="loyalty-phone-input" placeholder="e.g. 03703227220" class="flex-1 bg-charcoal border border-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold text-white placeholder-gray-600">
+                        <button onclick="checkLoyaltyCard()" class="px-6 py-3 bg-gradient-to-r from-gold-dark to-gold text-black font-bold text-xs uppercase tracking-wider rounded-xl hover:opacity-95 transition duration-200">
+                            Check
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loyalty Card Display Area -->
+                <div id="loyalty-display-area" class="mt-10 hidden">
+                    <div class="border-2 border-dashed border-gold/50 rounded-2xl p-6 bg-charcoal/80 relative">
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gold/20 pb-4 mb-6">
+                            <div>
+                                <span class="text-xs text-gold uppercase tracking-wider font-semibold">Customer ID / Phone</span>
+                                <h4 id="display-customer-phone" class="font-bold text-lg text-white">03703227220</h4>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-xs text-gold uppercase tracking-wider font-semibold">Total Stamps Earned</span>
+                                <h3 id="display-stamps-count" class="text-2xl font-serif font-bold gold-gradient-text">0 / 10</h3>
+                            </div>
+                        </div>
+
+                        <!-- 10 Stamp Grid -->
+                        <div class="grid grid-cols-5 sm:grid-cols-10 gap-3 mb-6" id="stamps-grid-container">
+                            <!-- Injected by JS -->
+                        </div>
+
+                        <!-- Reward Status Banner -->
+                        <div id="reward-status-banner" class="p-4 rounded-xl bg-gold/10 border border-gold/30 text-center text-sm font-medium text-gold hidden">
+                            🎉 Mubarak ho! Aapne 10 stamps mukamal kar liye hain. Apna free special gift hasil karein!
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Loyalty Rules Info -->
+                <div class="mt-8 pt-6 border-t border-gray-800 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center text-xs text-gray-400">
+                    <div class="p-3 bg-charcoal rounded-xl border border-gray-800">
+                        <i class="fa-solid fa-receipt text-gold text-base mb-1 block"></i>
+                        <span>1 Purchase = 1 Stamp</span>
+                    </div>
+                    <div class="p-3 bg-charcoal rounded-xl border border-gray-800">
+                        <i class="fa-solid fa-award text-gold text-base mb-1 block"></i>
+                        <span>Target: 10 Stamps</span>
+                    </div>
+                    <div class="p-3 bg-charcoal rounded-xl border border-gray-800">
+                        <i class="fa-solid fa-gift text-gold text-base mb-1 block"></i>
+                        <span>Reward: Free Perfume / Discount</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Customer Service Section -->
+    <section id="contact" class="py-20 bg-charcoal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+                <span class="text-gold text-xs font-bold uppercase tracking-widest bg-gold/10 px-3 py-1 rounded-full border border-gold/30">
+                    <i class="fa-solid fa-headset mr-1"></i> Support 24/7
+                </span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold">Customer <span class="gold-gradient-text">Service & Contact</span></h2>
+                <p class="text-gray-400 text-sm sm:text-base">Aapko kisi bhi query ya order ke liye hum se rabta kar sakte hain.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Address Card -->
+                <div class="bg-charcoal-light border border-gold/20 rounded-2xl p-8 text-center space-y-4 hover:border-gold/50 transition duration-300">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-gold/10 border border-gold/40 flex items-center justify-center text-gold text-xl">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-gold">Visit Our Shop</h3>
+                    <p class="text-gray-400 text-sm">St no 2, Bihar Wali Market, Bihar colony, Lyari, Karachi.</p>
+                </div>
+
+                <!-- Phone / Owner Card -->
+                <div class="bg-charcoal-light border border-gold/20 rounded-2xl p-8 text-center space-y-4 hover:border-gold/50 transition duration-300">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-gold/10 border border-gold/40 flex items-center justify-center text-gold text-xl">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-gold">Call / WhatsApp</h3>
+                    <p class="text-gray-400 text-sm">Muhammad Subhan<br><a href="tel:03703227220" class="text-gold font-bold hover:underline">03703227220</a></p>
+                    <a href="https://wa.me/923703227220?text=Hello%20Aizal%20Fatima%20Fragrance,%20I%20want%20to%20inquire%20about%20perfumes." target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-green-600 hover:bg-green-700 text-white font-semibold text-xs uppercase tracking-wider transition duration-200">
+                        <i class="fa-brands fa-whatsapp text-sm"></i> Chat on WhatsApp
+                    </a>
+                </div>
+
+                <!-- Social Media Card -->
+                <div class="bg-charcoal-light border border-gold/20 rounded-2xl p-8 text-center space-y-4 hover:border-gold/50 transition duration-300">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-gold/10 border border-gold/40 flex items-center justify-center text-gold text-xl">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </div>
+                    <h3 class="font-serif font-bold text-lg text-gold">Social Media</h3>
+                    <div class="flex justify-center gap-4 pt-2">
+                        <a href="https://instagram.com/af_fragrance" target="_blank" class="w-10 h-10 rounded-full bg-charcoal border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:text-black transition duration-200">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://tiktok.com/@affragrance_" target="_blank" class="w-10 h-10 rounded-full bg-charcoal border border-gold/30 flex items-center justify-center text-gold hover:bg-gold hover:text-black transition duration-200">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                    </div>
+                    <p class="text-xs text-gray-500">IG: @af_fragrance | TikTok: @affragrance_</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-charcoal-card border-t border-gold/20 py-12 text-center text-sm text-gray-500">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <div class="flex items-center justify-center space-x-3">
+                <div class="w-8 h-8 rounded-full border border-gold flex items-center justify-center bg-charcoal">
+                    <i class="fa-solid fa-crown text-gold text-xs"></i>
+                </div>
+                <span class="font-serif font-bold text-gold text-lg tracking-wider">Aizal Fatima Fragrance</span>
+            </div>
+            <p>&copy; 2026 Aizal Fatima Fragrance. All rights reserved. Powered by Muhammad Subhan (Lyari, Karachi).</p>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex justify-end">
+        <div class="w-full max-w-md bg-charcoal-card h-full border-l border-gold/30 p-6 flex flex-col justify-between shadow-2xl transform transition-transform duration-300">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b border-gold/20">
+                    <h3 class="font-serif font-bold text-xl text-gold flex items-center gap-2">
+                        <i class="fa-solid fa-bag-shopping"></i> Your Shopping Cart
+                    </h3>
+                    <button onclick="toggleCartModal()" class="text-gray-400 hover:text-gold text-xl p-1">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <!-- Cart Items List -->
+                <div id="cart-items-container" class="mt-6 space-y-4 max-h-[50vh] overflow-y-auto pr-2">
+                    <!-- Injected by JS -->
+                </div>
+            </div>
+
+            <!-- Cart Footer & Checkout -->
+            <div class="border-t border-gold/20 pt-6 space-y-4">
+                <div class="flex justify-between items-center text-lg font-bold">
+                    <span>Total Amount:</span>
+                    <span id="cart-total-price" class="text-gold">Rs. 0</span>
+                </div>
+                <button onclick="checkoutCart()" class="w-full py-4 rounded-xl bg-gradient-to-r from-gold-dark to-gold text-black font-bold text-xs uppercase tracking-wider hover:opacity-95 transition duration-200">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="w-full max-w-md bg-charcoal-card border-2 border-gold/40 rounded-2xl p-8 gold-glow relative">
+            <button onclick="closeAdminLogin()" class="absolute top-4 right-4 text-gray-400 hover:text-gold">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="text-center mb-6 space-y-2">
+                <div class="w-12 h-12 mx-auto rounded-full bg-gold/10 border border-gold/40 flex items-center justify-center text-gold text-xl">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <h3 class="font-serif font-bold text-2xl text-gold">Owner Admin Login</h3>
+                <p class="text-xs text-gray-400">Enter password to access owner control panel (Muhammad Subhan)</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gold mb-2">Admin Password</label>
+                    <input type="password" id="admin-password-input" placeholder="Enter password..." class="w-full bg-charcoal border border-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-gold text-white">
+                </div>
+                <button onclick="verifyAdminLogin()" class="w-full py-3 bg-gradient-to-r from-gold-dark to-gold text-black font-bold text-xs uppercase tracking-wider rounded-xl hover:opacity-95 transition duration-200">
+                    Login to Panel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div id="admin-panel-modal" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md hidden overflow-y-auto p-4 sm:p-6">
+        <div class="max-w-5xl mx-auto bg-charcoal-card border-2 border-gold/50 rounded-2xl p-6 sm:p-8 gold-glow relative my-8">
+            <div class="flex items-center justify-between pb-6 border-b border-gold/20 mb-6">
+                <div>
+                    <span class="text-xs uppercase tracking-widest text-gold font-semibold">Owner Control Center</span>
+                    <h2 class="font-serif font-bold text-2xl text-white">Aizal Fatima Fragrance - Admin Panel</h2>
+                </div>
+                <button onclick="closeAdminPanel()" class="px-4 py-2 rounded-lg bg-charcoal border border-gold/30 text-gold text-xs font-bold uppercase hover:bg-gold hover:text-black transition">
+                    <i class="fa-solid fa-right-from-bracket mr-1"></i> Logout
+                </button>
+            </div>
+
+            <!-- Admin Tabs Navigation -->
+            <div class="flex flex-wrap gap-2 mb-8 border-b border-gray-800 pb-4">
+                <button onclick="switchAdminTab('products')" id="tab-btn-products" class="admin-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold text-black transition">Manage Products</button>
+                <button onclick="switchAdminTab('loyalty')" id="tab-btn-loyalty" class="admin-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-charcoal border border-gold/30 text-gray-300 hover:border-gold transition">Manage Loyalty Stamps</button>
+                <button onclick="switchAdminTab('orders')" id="tab-btn-orders" class="admin-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-charcoal border border-gold/30 text-gray-300 hover:border-gold transition">View Store Orders</button>
+            </div>
+
+            <!-- Tab 1: Manage Products -->
+            <div id="admin-tab-products" class="admin-tab-content space-y-6">
+                <div class="bg-charcoal border border-gold/20 rounded-xl p-6">
+                    <h3 class="font-serif font-bold text-lg text-gold mb-4" id="product-form-title">Add New Perfume Product</h3>
+                    <input type="hidden" id="edit-product-id">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1">Product Name</label>
+                            <input type="text" id="admin-prod-name" placeholder="e.g. Blue Channel" class="w-full bg-charcoal-light border border-gold/30 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1">Category</label>
+                            <select id="admin-prod-cat" class="w-full bg-charcoal-light border border-gold/30 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold">
+                                <option value="Men">Men</option>
+                                <option value="Women">Women</option>
+                                <option value="Unisex">Unisex</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1">Price (PKR)</label>
+                            <input type="number" id="admin-prod-price" placeholder="3500" class="w-full bg-charcoal-light border border-gold/30 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1">Description</label>
+                            <input type="text" id="admin-prod-desc" placeholder="Long lasting luxury scent..." class="w-full bg-charcoal-light border border-gold/30 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold">
+                        </div>
+                        <div class="sm:col-span-2">
+                            <label class="block text-xs font-semibold text-gray-400 mb-1">Product Image (Optional)</label>
+                            <input type="file" id="admin-prod-img" accept="image/*" class="w-full bg-charcoal-light border border-gold/30 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold">
+                        </div>
+                    </div>
+                    <div class="mt-4 flex gap-2">
+                        <button onclick="saveProduct()" class="px-6 py-2.5 rounded-lg bg-gold text-black font-bold text-xs uppercase tracking-wider hover:opacity-95 transition">Save Product</button>
+                        <button onclick="resetProductForm()" id="cancel-edit-btn" class="hidden px-6 py-2.5 rounded-lg bg-gray-700 text-white font-bold text-xs uppercase tracking-wider hover:bg-gray-600 transition">Cancel</button>
+                    </div>
+                </div>
+
+                <!-- Product List Table -->
+                <div class="bg-charcoal border border-gold/20 rounded-xl p-6 overflow-x-auto">
+                    <h3 class="font-serif font-bold text-lg text-gold mb-4">Existing Products Catalog</h3>
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-800 text-gold text-xs uppercase tracking-wider">
+                                <th class="pb-3">Name</th>
+                                <th class="pb-3">Category</th>
+                                <th class="pb-3">Price</th>
+                                <th class="pb-3 text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-products-table-body" class="divide-y divide-gray-800/60">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab 2: Manage Loyalty Stamps -->
+            <div id="admin-tab-loyalty" class="admin-tab-content space-y-6 hidden">
+                <div class="bg-charcoal border border-gold/20 rounded-xl p-6 max-w-xl">
+                    <h3 class="font-serif font-bold text-lg text-gold mb-4">Update Customer Loyalty Stamps</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1">Customer Phone Number</label>
+                            <input type="text" id="admin-loyalty-phone" placeholder="e.g. 03703227220" class="w-full bg-charcoal-light border border-gold/30 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-400 mb-1">Set Stamp Count (0 to 10)</label>
+                            <input type="number" min="0" max="10" id="admin-loyalty-stamps" placeholder="1" class="w-full bg-charcoal-light border border-gold/30 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-gold">
+                        </div>
+                        <button onclick="adminUpdateStamps()" class="px-6 py-2.5 rounded-lg bg-gold text-black font-bold text-xs uppercase tracking-wider hover:opacity-95 transition">Update Stamps</button>
+                    </div>
+                </div>
+
+                <!-- All Customers Loyalty List -->
+                <div class="bg-charcoal border border-gold/20 rounded-xl p-6 overflow-x-auto">
+                    <h3 class="font-serif font-bold text-lg text-gold mb-4">All Customer Loyalty Records</h3>
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-800 text-gold text-xs uppercase tracking-wider">
+                                <th class="pb-3">Phone Number</th>
+                                <th class="pb-3">Stamps Earned</th>
+                                <th class="pb-3">Reward Status</th>
+                                <th class="pb-3 text-right">Quick Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-loyalty-table-body" class="divide-y divide-gray-800/60">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tab 3: Store Orders -->
+            <div id="admin-tab-orders" class="admin-tab-content space-y-6 hidden">
+                <div class="bg-charcoal border border-gold/20 rounded-xl p-6 overflow-x-auto">
+                    <h3 class="font-serif font-bold text-lg text-gold mb-4">Customer Orders</h3>
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-gray-800 text-gold text-xs uppercase tracking-wider">
+                                <th class="pb-3">Order ID</th>
+                                <th class="pb-3">Items</th>
+                                <th class="pb-3">Total Amount</th>
+                                <th class="pb-3">Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-orders-table-body" class="divide-y divide-gray-800/60">
+                            <!-- Injected by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Notification Modal -->
+    <div id="notification-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="bg-charcoal-card border border-gold/40 rounded-2xl p-6 max-w-sm w-full text-center space-y-4 gold-glow">
+            <div id="notif-icon" class="w-12 h-12 mx-auto rounded-full bg-gold/10 border border-gold flex items-center justify-center text-gold text-xl">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h4 id="notif-title" class="font-serif font-bold text-lg text-gold">Success</h4>
+            <p id="notif-message" class="text-sm text-gray-300">Message here...</p>
+            <button onclick="closeNotification()" class="w-full py-2.5 bg-gold text-black font-bold text-xs uppercase tracking-wider rounded-lg">OK</button>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Default Products Data
+        const defaultProducts = [
+            { id: 1, name: 'Vector IX', category: 'Men', price: 3500, description: 'Fresh aquatic and icy notes with long-lasting impact.' },
+            { id: 2, name: 'Hawas Ice', category: 'Men', price: 3800, description: 'A sparkling citrus and woody fragrance for modern men.' },
+            { id: 3, name: 'Office for Men', category: 'Men', price: 4200, description: 'Professional, charismatic, and ultra clean scent.' },
+            { id: 4, name: 'Azzaro Wanted', category: 'Men', price: 3600, description: 'Bold spicy, woody, and vibrant magnetic fragrance.' },
+            { id: 5, name: 'Gucci Flora', category: 'Women', price: 3900, description: 'Magnificent floral bouquet wrapped in gorgeous sweetness.' },
+            { id: 6, name: 'Black Opium', category: 'Women', price: 4000, description: 'Addictive warm coffee and vanilla floral sensuality.' }
+        ];
+
+        // Default Loyalty Data
+        const defaultLoyalty = {
+            "03703227220": 4,
+            "03001234567": 10
+        };
+
+        // Default Orders Data
+        const defaultOrders = [
+            { id: "ORD-9281", items: "Vector IX (1), Gucci Flora (1)", total: "Rs. 7,400", date: "2026-06-01" },
+            { id: "ORD-4412", items: "Hawas Ice (2)", total: "Rs. 7,600", date: "2026-06-02" }
+        ];
+
+        // State variables loaded from localStorage
+        let products = JSON.parse(localStorage.getItem('af_products')) || defaultProducts;
+        let loyaltyData = JSON.parse(localStorage.getItem('af_loyalty')) || defaultLoyalty;
+        let orders = JSON.parse(localStorage.getItem('af_orders')) || defaultOrders;
+        let cart = [];
+        let currentFilter = 'All';
+
+        // Initialize application on load
+        window.onload = function() {
+            renderProducts();
+            updateCartBadge();
+        };
+
+        // Save to localStorage helper
+        function saveState() {
+            localStorage.setItem('af_products', JSON.stringify(products));
+            localStorage.setItem('af_loyalty', JSON.stringify(loyaltyData));
+            localStorage.setItem('af_orders', JSON.stringify(orders));
+        }
+
+        // Toggle Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Render Products Catalog
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            grid.innerHTML = '';
+
+            const filtered = currentFilter === 'All' ? products : products.filter(p => p.category === currentFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-gray-500">No products found in this category.</div>`;
+                return;
+            }
+
+            filtered.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-charcoal-light border border-gold/20 rounded-2xl p-6 flex flex-col justify-between hover:border-gold/60 transition duration-300 group shadow-lg";
+                
+                const imageDisplay = product.image 
+                    ? `<img src="${product.image}" alt="${product.name}" class="w-full h-48 object-cover rounded-xl mb-4 border border-gold/30">` 
+                    : `<div class="w-10 h-10 rounded-full bg-charcoal border border-gold/30 flex items-center justify-center text-gold group-hover:scale-110 transition duration-300 mb-4"><i class="fa-solid fa-spray-can text-sm"></i></div>`;
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="px-3 py-1 rounded-full bg-gold/10 border border-gold/30 text-gold text-xs font-semibold uppercase tracking-wider">${product.category}</span>
+                            ${!product.image ? imageDisplay : ''}
+                        </div>
+                        ${product.image ? imageDisplay : ''}
+                        <h3 class="font-serif font-bold text-xl text-white mb-2">${product.name}</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm mb-4 leading-relaxed">${product.description}</p>
+                    </div>
+                    <div class="pt-4 border-t border-gray-800 flex items-center justify-between">
+                        <div>
+                            <span class="block text-xs text-gray-500 uppercase">Price</span>
+                            <span class="text-gold font-bold text-lg">Rs. ${product.price.toLocaleString()}</span>
+                        </div>
+                        <button onclick="addToCart(${product.id})" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-gold-dark to-gold text-black font-bold text-xs uppercase tracking-wider hover:opacity-95 transition duration-200">
+                            Add to Cart
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filter Products by Category
+        function filterProducts(category) {
+            currentFilter = category;
+            const buttons = document.querySelectorAll('.category-btn');
+            buttons.forEach(btn => {
+                if (btn.innerText.toUpperCase() === category.toUpperCase() || (category === 'All' && btn.innerText === 'All')) {
+                    btn.className = "category-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-gold text-black transition duration-200";
+                } else {
+                    btn.className = "category-btn px-5 py-2 rounded-full text-xs font-semibold uppercase tracking-wider bg-charcoal-light border border-gold/30 text-gray-300 hover:border-gold transition duration-200";
+                }
+            });
+            renderProducts();
+        }
+
+        // Cart Management
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            updateCartBadge();
+            showNotification("Added to Cart", `${product.name} has been added to your shopping bag.`);
+        }
+
+        function updateCartBadge() {
+            const badge = document.getElementById('cart-badge');
+            const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
+            if (totalCount > 0) {
+                badge.innerText = totalCount;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cart-modal');
+            modal.classList.toggle('hidden');
+            if (!modal.classList.contains('hidden')) {
+                renderCartItems();
+            }
+        }
+
+        function renderCartItems() {
+            const container = document.getElementById('cart-items-container');
+            const totalPriceEl = document.getElementById('cart-total-price');
+            container.innerHTML = '';
+
+            if (cart.length === 0) {
+                container.innerHTML = `<div class="text-center py-12 text-gray-500 text-sm">Your shopping bag is empty.</div>`;
+                totalPriceEl.innerText = "Rs. 0";
+                return;
+            }
+
+            let total = 0;
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+                const div = document.createElement('div');
+                div.className = "flex items-center justify-between p-3 bg-charcoal rounded-xl border border-gold/20";
+                div.innerHTML = `
+                    <div>
+                        <h4 class="font-bold text-sm text-white">${item.name}</h4>
+                        <span class="text-xs text-gold">Rs. ${item.price.toLocaleString()} x ${item.qty}</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="font-bold text-sm text-white">Rs. ${(item.price * item.qty).toLocaleString()}</span>
+                        <button onclick="removeFromCart(${index})" class="text-red-400 hover:text-red-300 text-xs p-1">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            totalPriceEl.innerText = `Rs. ${total.toLocaleString()}`;
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartBadge();
+            renderCartItems();
+        }
+
+        function checkoutCart() {
+            if (cart.length === 0) {
+                showNotification("Cart Empty", "Please add items to cart before checkout.");
+                return;
+            }
+            const itemsSummary = cart.map(i => `${i.name} (${i.qty})`).join(', ');
+            const totalSum = cart.reduce((sum, i) => sum + (i.price * i.qty), 0);
+            const newOrder = {
+                id: "ORD-" + Math.floor(1000 + Math.random() * 9000),
+                items: itemsSummary,
+                total: `Rs. ${totalSum.toLocaleString()}`,
+                date: new Date().toISOString().split('T')[0]
+            };
+            orders.unshift(newOrder);
+            saveState();
+
+            cart = [];
+            updateCartBadge();
+            toggleCartModal();
+            showNotification("Order Successful!", "Thank you for shopping with Aizal Fatima Fragrance! Your order has been placed.");
+        }
+
+        // Loyalty Card System
+        function checkLoyaltyCard() {
+            const phone = document.getElementById('loyalty-phone-input').value.trim();
+            if (!phone) {
+                showNotification("Enter Phone", "Please enter a valid phone number to check stamps.");
+                return;
+            }
+
+            const displayArea = document.getElementById('loyalty-display-area');
+            const phoneDisplay = document.getElementById('display-customer-phone');
+            const countDisplay = document.getElementById('display-stamps-count');
+            const gridContainer = document.getElementById('stamps-grid-container');
+            const rewardBanner = document.getElementById('reward-status-banner');
+
+            phoneDisplay.innerText = phone;
+            const stamps = loyaltyData[phone] !== undefined ? loyaltyData[phone] : 0;
+            countDisplay.innerText = `${stamps} / 10`;
+
+            gridContainer.innerHTML = '';
+            for (let i = 1; i <= 10; i++) {
+                const slot = document.createElement('div');
+                const isStamped = i <= stamps;
+                slot.className = `h-12 rounded-lg flex items-center justify-center font-bold text-xs border ${isStamped ? 'bg-gold text-black border-gold gold-glow' : 'bg-charcoal border-gold/30 text-gray-600'}`;
+                slot.innerHTML = isStamped ? `<i class="fa-solid fa-stamp text-sm"></i>` : `${i}`;
+                gridContainer.appendChild(slot);
+            }
+
+            if (stamps >= 10) {
+                rewardBanner.classList.remove('hidden');
+            } else {
+                rewardBanner.classList.add('hidden');
+            }
+
+            displayArea.classList.remove('hidden');
+        }
+
+        // Admin Authentication & Modal
+        function openAdminLogin() {
+            document.getElementById('admin-login-modal').classList.remove('hidden');
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('admin-login-modal').classList.add('hidden');
+            document.getElementById('admin-password-input').value = '';
+        }
+
+        function verifyAdminLogin() {
+            const pass = document.getElementById('admin-password-input').value;
+            if (pass === "admin00220044") {
+                closeAdminLogin();
+                openAdminPanel();
+            } else {
+                showNotification("Incorrect Password", "Please enter the correct admin password (admin00220044).");
+            }
+        }
+
+        function openAdminPanel() {
+            document.getElementById('admin-panel-modal').classList.remove('hidden');
+            renderAdminProductsTable();
+            renderAdminLoyaltyTable();
+            renderAdminOrdersTable();
+        }
+
+        function closeAdminPanel() {
+            document.getElementById('admin-panel-modal').classList.add('hidden');
+        }
+
+        function switchAdminTab(tabName) {
+            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+                btn.className = "admin-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-charcoal border border-gold/30 text-gray-300 hover:border-gold transition";
+            });
+
+            document.getElementById(`admin-tab-${tabName}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+            activeBtn.className = "admin-tab-btn px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-gold text-black transition";
+        }
+
+        // Admin Products Management
+        function renderAdminProductsTable() {
+            const tbody = document.getElementById('admin-products-table-body');
+            tbody.innerHTML = '';
+            products.forEach(p => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-3 font-bold text-white">${p.name}</td>
+                    <td class="py-3 text-gold">${p.category}</td>
+                    <td class="py-3 text-gray-300">Rs. ${p.price.toLocaleString()}</td>
+                    <td class="py-3 text-right space-x-2">
+                        <button onclick="editProduct(${p.id})" class="px-3 py-1 rounded bg-charcoal-light border border-gold/30 text-gold text-xs hover:bg-gold hover:text-black transition">Edit</button>
+                        <button onclick="deleteProduct(${p.id})" class="px-3 py-1 rounded bg-red-900/40 border border-red-500/30 text-red-400 text-xs hover:bg-red-600 hover:text-white transition">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function saveProduct() {
+            const id = document.getElementById('edit-product-id').value;
+            const name = document.getElementById('admin-prod-name').value.trim();
+            const category = document.getElementById('admin-prod-cat').value;
+            const price = parseFloat(document.getElementById('admin-prod-price').value);
+            const description = document.getElementById('admin-prod-desc').value.trim();
+            const imgInput = document.getElementById('admin-prod-img');
+
+            if (!name || isNaN(price)) {
+                showNotification("Error", "Please fill in valid product name and price.");
+                return;
+            }
+
+            if (imgInput.files && imgInput.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    finalizeSave(id, name, category, price, description, e.target.result);
+                };
+                reader.readAsDataURL(imgInput.files[0]);
+            } else {
+                let existingImg = "";
+                if (id) {
+                    const prod = products.find(p => p.id == id);
+                    existingImg = prod && prod.image ? prod.image : "";
+                }
+                finalizeSave(id, name, category, price, description, existingImg);
+            }
+        }
+
+        function finalizeSave(id, name, category, price, description, image) {
+            if (id) {
+                const prod = products.find(p => p.id == id);
+                if (prod) {
+                    prod.name = name;
+                    prod.category = category;
+                    prod.price = price;
+                    prod.description = description;
+                    prod.image = image;
+                }
+            } else {
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({ id: newId, name, category, price, description, image });
+            }
+
+            saveState();
+            renderProducts();
+            renderAdminProductsTable();
+            resetProductForm();
+            showNotification("Success", "Product saved successfully.");
+        }
+
+        function editProduct(id) {
+            const p = products.find(prod => prod.id === id);
+            if (!p) return;
+
+            document.getElementById('edit-product-id').value = p.id;
+            document.getElementById('admin-prod-name').value = p.name;
+            document.getElementById('admin-prod-cat').value = p.category;
+            document.getElementById('admin-prod-price').value = p.price;
+            document.getElementById('admin-prod-desc').value = p.description;
+            document.getElementById('admin-prod-img').value = '';
+
+            document.getElementById('product-form-title').innerText = "Edit Perfume Product";
+            document.getElementById('cancel-edit-btn').classList.remove('hidden');
+        }
+
+        function resetProductForm() {
+            document.getElementById('edit-product-id').value = '';
+            document.getElementById('admin-prod-name').value = '';
+            document.getElementById('admin-prod-price').value = '';
+            document.getElementById('admin-prod-desc').value = '';
+            document.getElementById('admin-prod-img').value = '';
+            document.getElementById('product-form-title').innerText = "Add New Perfume Product";
+            document.getElementById('cancel-edit-btn').classList.add('hidden');
+        }
+
+        function deleteProduct(id) {
+            products = products.filter(p => p.id !== id);
+            saveState();
+            renderProducts();
+            renderAdminProductsTable();
+            showNotification("Deleted", "Product removed from catalog.");
+        }
+
+        // Admin Loyalty Management
+        function renderAdminLoyaltyTable() {
+            const tbody = document.getElementById('admin-loyalty-table-body');
+            tbody.innerHTML = '';
+            for (const [phone, stamps] of Object.entries(loyaltyData)) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-3 font-bold text-white">${phone}</td>
+                    <td class="py-3 text-gold font-bold">${stamps} / 10</td>
+                    <td class="py-3 text-gray-300">${stamps >= 10 ? '<span class="text-gold font-semibold">Reward Unlocked!</span>' : 'In Progress'}</td>
+                    <td class="py-3 text-right">
+                        <button onclick="quickAddStamp('${phone}')" class="px-3 py-1 rounded bg-gold text-black text-xs font-bold hover:opacity-95 transition">+1 Stamp</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            }
+        }
+
+        function adminUpdateStamps() {
+            const phone = document.getElementById('admin-loyalty-phone').value.trim();
+            const stamps = parseInt(document.getElementById('admin-loyalty-stamps').value);
+
+            if (!phone || isNaN(stamps) || stamps < 0 || stamps > 10) {
+                showNotification("Invalid Data", "Please enter valid phone number and stamp count between 0 and 10.");
+                return;
+            }
+
+            loyaltyData[phone] = stamps;
+            saveState();
+            renderAdminLoyaltyTable();
+            document.getElementById('admin-loyalty-phone').value = '';
+            document.getElementById('admin-loyalty-stamps').value = '';
+            showNotification("Stamps Updated", `Customer ${phone} now has ${stamps} stamps.`);
+        }
+
+        function quickAddStamp(phone) {
+            let current = loyaltyData[phone] || 0;
+            if (current < 10) {
+                loyaltyData[phone] = current + 1;
+                saveState();
+                renderAdminLoyaltyTable();
+                showNotification("Stamp Added", `Added 1 stamp to ${phone}. Total: ${loyaltyData[phone]}`);
+            } else {
+                showNotification("Max Stamps", "Customer already has 10 stamps.");
+            }
+        }
+
+        // Admin Orders Management
+        function renderAdminOrdersTable() {
+            const tbody = document.getElementById('admin-orders-table-body');
+            tbody.innerHTML = '';
+            orders.forEach(o => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="py-3 font-bold text-gold">${o.id}</td>
+                    <td class="py-3 text-gray-300">${o.items}</td>
+                    <td class="py-3 font-bold text-white">${o.total}</td>
+                    <td class="py-3 text-gray-400">${o.date}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // Notification Modal
+        function showNotification(title, message) {
+            document.getElementById('notif-title').innerText = title;
+            document.getElementById('notif-message').innerText = message;
+            document.getElementById('notification-modal').classList.remove('hidden');
+        }
+
+        function closeNotification() {
+            document.getElementById('notification-modal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
